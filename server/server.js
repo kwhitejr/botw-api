@@ -2,6 +2,13 @@ import express from "express";
 
 const app = express();
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => {
+  res.status(200).send("ok");
+});
 
-app.listen(3000, () => console.log("Example app listening on port 3000!")); // eslint-disable-line
+const server = app.listen(3000, () => {
+  const port = server.address().port;
+  console.log("Example app listening at port %s", port); // eslint-disable-line
+});
+
+module.exports = server;

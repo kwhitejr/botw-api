@@ -1,23 +1,22 @@
 import { expect } from "chai";
+import request from "supertest";
 
 describe("Server", () => {
-  let app;
-
-  before(() => {
-    // create a server
+  let server;
+  beforeEach(function() {
+    server = require("./server");
+  });
+  afterEach(function() {
+    server.close();
   });
 
   it("should start", () => {
-    expect(app).to.not.be.false;
+    expect(server).to.not.be.false;
   });
 
-  it("GET:/", done => {
-    request(app)
+  it("GET /", done => {
+    request(server)
       .get("/")
-      .expect(200, { version }, done);
-  });
-
-  after(() => {
-    // app.server.close();
+      .expect(200, done);
   });
 });
