@@ -1,14 +1,18 @@
 import express from "express";
 
-const app = express();
+const createServer = () => {
+  const app = express();
 
-app.get("/", (req, res) => {
-  res.status(200).send("ok");
-});
+  app.get("/", (req, res) => {
+    res.status(200).send("ok");
+  });
 
-const server = app.listen(3000, () => {
-  const port = server.address().port;
-  console.log("Example app listening at port %s", port); // eslint-disable-line
-});
+  const server = app.listen(3000, () => {
+    const port = server.address().port;
+    // console.log("Example app listening at port %s", port); // eslint-disable-line
+  });
 
-module.exports = server;
+  return server;
+};
+
+module.exports = { createServer };
