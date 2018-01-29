@@ -12,4 +12,7 @@ module.exports = {
   rules: {
     eqeqeq: ["error", "always", { null: "ignore" }],
   },
+  parserOptions: {
+    sourceType: "module",
+  },
 };
