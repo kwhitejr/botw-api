@@ -1,4 +1,5 @@
-import { Router as router } from "express";
+import express from "express";
+let router = express.Router();
 
 const exampleRoutes = () => {
   router.get("/", (req, res, next) => {
@@ -18,4 +19,4 @@ const exampleRoutes = () => {
   return router;
 };
 
-module.exports = exampleRoutes;
+module.exports = { exampleRoutes };

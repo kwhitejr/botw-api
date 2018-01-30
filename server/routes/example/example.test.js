@@ -4,7 +4,7 @@ import request from "supertest";
 describe("Examples Routes", () => {
   let server;
   beforeEach(() => {
-    server = require("./server").createServer();
+    server = require("../../server").createServer();
   });
   afterEach(done => {
     server.close(done);
