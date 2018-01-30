@@ -29,6 +29,6 @@
     "client": "cd client && yarn start",
     "server": "nodemon server/server.js --exec babel-node --presets es2015,stage-3",
     "test:lint": "eslint **/*.js --ignore-pattern node_modules/",
-    "test:unit": "mocha --compilers js:babel-core/register **/*.test.js"
+    "test:unit": "mocha --compilers js:babel-core/register \"./{,!(node_modules)/**}/*.test.js\""
   }
 }

@@ -14,7 +14,7 @@ describe("Server", () => {
     expect(server).to.not.be.false;
   });
 
-  it("should GET /", done => {
+  it("should GET:/", done => {
     request(server)
       .get("/")
       .expect(200, done);
