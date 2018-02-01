@@ -35,7 +35,8 @@
     "server": "nodemon index.js --exec babel-node --presets es2015,stage-3",
     "test:lint": "eslint **/*.js --ignore-pattern node_modules/",
     "test:unit": "mocha --compilers js:babel-core/register \"./{,!(node_modules)/**}/*.test.js\"",
-    "test:coverage": "cross-env NODE_ENV=test nyc mocha \"./{,!(node_modules)/**}/*.test.js\""
+    "test:coverage": "cross-env NODE_ENV=test nyc mocha \"./{,!(node_modules)/**}/*.test.js\"",
+    "viewcoverage": "open coverage/lcov-report/index.html"
   },
   "nyc": {
     "require": [
