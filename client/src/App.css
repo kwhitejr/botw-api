@@ -27,3 +27,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.code-block {
+  padding: 20px;
+  width: 500px;
+  text-align: left;
+  position: absolute;
+  margin: auto;
+}

@@ -19,6 +19,10 @@ class App extends Component {
           placeholder="/github/:userName"
           action={{ color: "teal", content: "Submit" }}
         />
+        <br />
+        <div className="ui segment code-block">
+          <code>some code</code>
+        </div>
       </div>
     );
   }
