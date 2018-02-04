@@ -5,6 +5,7 @@ import { exampleGithubRoutes } from "./routes/example-github/example-github.js";
 
 const createServer = () => {
   const app = express();
+  const PORT = process.env.PORT || 3001;
 
   app.get("/", (req, res) => {
     res.status(200).send("ok");
@@ -13,9 +14,9 @@ const createServer = () => {
   app.use("/example", exampleRoutes());
   app.use("/github", exampleGithubRoutes());
 
-  const server = app.listen(3000, () => {
+  const server = app.listen(PORT, () => {
     const port = server.address().port;
-    console.log("Example app listening at port %s", port); // eslint-disable-line
+    console.log(`Example app listening at port ${port}`); // eslint-disable-line
   });
 
   return server;
