@@ -18,9 +18,8 @@
   font-size: 1.5em;
 }
 
-.App-intro {
+.example-input {
   margin-top: 20px;
-  font-size: large;
 }
 
 @keyframes App-logo-spin {
@@ -30,8 +29,5 @@
 
 .code-block {
   padding: 20px;
-  width: 500px;
   text-align: left;
-  position: absolute;
-  margin: auto;
 }
