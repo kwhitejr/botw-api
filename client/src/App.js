@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Input } from "semantic-ui-react";
+
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -10,9 +12,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Input
+          size="big"
+          className="App-intro"
+          label="http://localhost:3000"
+          placeholder="/github/:userName"
+          action={{ color: "teal", content: "Submit" }}
+        />
       </div>
     );
   }
