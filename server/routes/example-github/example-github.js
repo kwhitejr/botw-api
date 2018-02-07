@@ -3,6 +3,7 @@ import rp from "request-promise-native";
 
 let router = express.Router();
 
+/** Simple external GET example with request-promise **/
 const rpOptions = user => {
   return {
     method: "GET",
@@ -17,14 +18,16 @@ const rpOptions = user => {
   };
 };
 
-const getGithubUser = (req, res, next) => {
-  const user = req.params.user;
+const fetchUserProfile = username => {
+  rp(rpOptions(username));
+};
 
-  rp(rpOptions(user))
+const getGithubUser = (req, res, next) => {
+  fetchUserProfile(req.params.user)
     .then(userProfile => {
       res.json({
         ok: true,
-        msg: `User has ${userProfile.public_repos} repos`,
+        msg: `User ${userProfile.login} has ${userProfile.public_repos} repos`,
       });
       next();
     })
@@ -33,6 +36,7 @@ const getGithubUser = (req, res, next) => {
     });
 };
 
+/** Supply GET logic to Express router **/
 const exampleGithubRoutes = () => {
   /**
    * Get user profile from github and print the number of public repos.
@@ -43,4 +47,4 @@ const exampleGithubRoutes = () => {
   return router;
 };
 
-module.exports = { rpOptions, getGithubUser, exampleGithubRoutes };
+module.exports = { rpOptions, fetchUserProfile, exampleGithubRoutes };

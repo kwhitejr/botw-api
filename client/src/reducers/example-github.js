@@ -12,7 +12,8 @@ import {
 const API_URL = `http://localhost:3001`;
 
 const fetchGithubUser = username => {
-  fetch(`${API_URL}/github/${username}`);
+  console.log("username", username);
+  return fetch(`${API_URL}/github/${username}`);
 };
 
 export const INITIAL_STATE = {

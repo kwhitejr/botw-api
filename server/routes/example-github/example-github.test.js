@@ -1,9 +1,15 @@
-import { expect } from "chai";
+"use strict";
+
+import { expect, assert } from "chai";
 import request from "supertest";
 import sinon from "sinon";
 import uuid from "uuid";
 
-import { rpOptions, getGithubUser } from "./example-github.js";
+import {
+  rpOptions,
+  fetchUserProfile,
+  getGithubUser,
+} from "./example-github.js";
 
 describe("Github Examples Routes", () => {
   let server;
@@ -36,71 +42,53 @@ describe("Github Examples Routes", () => {
     });
   });
 
-  describe("getGithubUser", () => {
-    it("should return a valid user profile object", () => {
-      const MOCK_REQUEST = {
-        params: {
-          user: uuid(),
-        },
-      };
-
-      const MOCK_RESPONSE = {
-        ok: true,
-        msg: `User has 151 repos`,
-      };
-
-      const MOCK_PROFILE = {
-        login: MOCK_REQUEST.params.user,
-        id: 13326538,
-        url: `https://api.github.com/users/${MOCK_REQUEST.params.user}`,
-        html_url: `https://github.com/${MOCK_REQUEST.params.user}`,
-        public_repos: 151,
-        public_gists: 7,
-        followers: 11,
-        following: 1,
-      };
-
-      getGithubUser(MOCK_REQUEST).then(res, () => {
-        console.log(res);
-      });
+  describe("fetchUserProfile", () => {
+    it("should have a successful response", async () => {
+      const MOCK_USER = uuid();
+      try {
+        const res = await fetchUserProfile(MOCK_USER);
+        assert.ok(res);
+      } catch (err) {
+        assert.ok(err);
+      }
     });
   });
 
-  // describe("GET github/:user", () => {
-  //   it("should return a valid user from path paramater", () => {
-  //     const MOCK_USER = uuid();
+  // describe("getGithubUser", () => {
+  //   it("should return a valid user profile object", done => {
+  //     const MOCK_USER = "kwhitejr";
 
-  //     const options = {
-  //       uri: MOCK_USER,
-  //       headers: {
-  //         "User-Agent": "Request-Promise",
+  //     const MOCK_REQUEST = {
+  //       params: {
+  //         user: MOCK_USER,
   //       },
-  //       json: true,
   //     };
 
-  //     const response = sinon.stub().resolves({
-  // login: MOCK_USER,
-  // id: 13326538,
-  // url: `https://api.github.com/users/${MOCK_USER}`,
-  // html_url: `https://github.com/${MOCK_USER}`,
-  // public_repos: 151,
-  // public_gists: 7,
-  // followers: 11,
-  // following: 1,
+  //     const MOCK_PROFILE = {
+  //       login: MOCK_REQUEST.params.user,
+  //       public_repos: 151,
+  //     };
+
+  //     const MOCK_RESPONSE = {
+  //       ok: true,
+  //       msg: `User ${MOCK_PROFILE.login} has ${
+  //         MOCK_PROFILE.public_repos
+  //       } repos`,
+  //     };
+
+  //     const userProfile = new Promise((resolve, reject) => {
+  //       resolve(MOCK_PROFILE);
   //     });
 
-  //     const call = new Promise.resolve(response);
+  //     // userProfile.then(() => {
+  //     //   expect(MOCK_RESPONSE.msg).to.equal(
+  //     //     `User ${userProfile.login} has ${userProfile.public_repos} repos`
+  //     //   );
+  //     // });
 
-  //     return request(server)
-  //       .get(`/github/${MOCK_USER}`)
-  //       .expect(200)
-  //       .then(response => {
-  //         expect(response).to.be.an("object");
-  //         expect(response.login).to.deep.equal(MOCK_USER);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
+  //     request(server)
+  //       .get("/github/" + MOCK_USER)
+  //       .expect(200, done);
   //   });
   // });
 });

@@ -6,8 +6,8 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader",
         include: __dirname,
-        exclude: /node_modules/
-      }
-    ]
-  }
+        exclude: /node_modules/,
+      },
+    ],
+  },
 };
