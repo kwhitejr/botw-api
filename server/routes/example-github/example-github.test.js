@@ -54,41 +54,59 @@ describe("Github Examples Routes", () => {
     });
   });
 
-  // describe("getGithubUser", () => {
-  //   it("should return a valid user profile object", done => {
-  //     const MOCK_USER = "kwhitejr";
+  describe("getGithubUser", () => {
+    it("should return a valid user profile object", done => {
+      const MOCK_USER = uuid();
 
-  //     const MOCK_REQUEST = {
-  //       params: {
-  //         user: MOCK_USER,
-  //       },
-  //     };
+      // const MOCK_REQUEST = {
+      //   params: {
+      //     user: MOCK_USER,
+      //   },
+      // };
 
-  //     const MOCK_PROFILE = {
-  //       login: MOCK_REQUEST.params.user,
-  //       public_repos: 151,
-  //     };
+      const MOCK_PROFILE = {
+        login: MOCK_USER,
+        public_repos: 151,
+      };
 
-  //     const MOCK_RESPONSE = {
-  //       ok: true,
-  //       msg: `User ${MOCK_PROFILE.login} has ${
-  //         MOCK_PROFILE.public_repos
-  //       } repos`,
-  //     };
+      const MOCK_RESPONSE = {
+        ok: true,
+        msg: `User ${MOCK_PROFILE.login} has ${
+          MOCK_PROFILE.public_repos
+        } repos`,
+      };
 
-  //     const userProfile = new Promise((resolve, reject) => {
-  //       resolve(MOCK_PROFILE);
-  //     });
+      const MOCK_OPTIONS = {
+        method: "GET",
+        uri: "https://api.github.com/users/" + MOCK_USER,
+        // qs: {
+        //   access_token: "xxxxx xxxxx", // -> uri + '?access_token=xxxxx%20xxxxx'
+        // },
+        headers: {
+          "User-Agent": "Request-Promise",
+        },
+        json: true,
+      };
 
-  //     // userProfile.then(() => {
-  //     //   expect(MOCK_RESPONSE.msg).to.equal(
-  //     //     `User ${userProfile.login} has ${userProfile.public_repos} repos`
-  //     //   );
-  //     // });
+      // const userProfile = new Promise((resolve, reject) => {
+      //   resolve(MOCK_PROFILE);
+      // });
 
-  //     request(server)
-  //       .get("/github/" + MOCK_USER)
-  //       .expect(200, done);
-  //   });
-  // });
+      // userProfile.then(() => {
+      //   expect(MOCK_RESPONSE.msg).to.equal(
+      //     `User ${userProfile.login} has ${userProfile.public_repos} repos`
+      //   );
+      // });
+      sinon.stub(rpOptions).returns(MOCK_OPTIONS);
+      sinon.stub(fetchUserProfile).resolves(MOCK_PROFILE);
+
+      request(server)
+        .get(`/github/${MOCK_USER}`)
+        .end(res => {
+          console.log("res: ", res);
+          expect(res.status).to.equal(200);
+          // expect(res.body.msg).to.equal('... something about MOCK_USER?...');
+        });
+    });
+  });
 });

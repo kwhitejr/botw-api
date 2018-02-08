@@ -10,10 +10,12 @@ export const fetchGithubUser = username => ({
   type: GITHUB_USER_FETCH,
   username,
 });
+
 export const fetchGithubUserSuccess = userProfile => ({
   type: GITHUB_USER_SUCCESS,
   userProfile,
 });
+
 export const fetchGithubUserFailure = error => ({
   type: GITHUB_USER_FAILURE,
   error,

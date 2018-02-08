@@ -1,4 +1,6 @@
 import { loop, Cmd } from "redux-loop";
+// create top level utils for `rp`
+import rp from "request-promise-native";
 
 import {
   GITHUB_USER_FETCH,
@@ -11,10 +13,23 @@ import {
 
 const API_URL = `http://localhost:3001`;
 
-const fetchGithubUser = username => {
-  console.log("username", username);
-  return fetch(`${API_URL}/github/${username}`);
+const rpOptions = user => {
+  return {
+    method: "GET",
+    uri: `${API_URL}/github/${user}`,
+    // qs: {
+    //   access_token: "xxxxx xxxxx", // -> uri + '?access_token=xxxxx%20xxxxx'
+    // },
+    headers: {
+      "User-Agent": "Request-Promise",
+    },
+    json: true, // Automatically parses the JSON string in the response
+  };
 };
+
+function _fetchGithubUser(username) {
+  return rp(rpOptions(username));
+}
 
 export const INITIAL_STATE = {
   error: null,
@@ -27,7 +42,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
     case GITHUB_USER_FETCH:
       return loop(
         { ...state, isFetchingGithubUser: true },
-        Cmd.run(fetchGithubUser, {
+        Cmd.run(_fetchGithubUser, {
           successActionCreator: fetchGithubUserSuccess,
           failActionCreator: fetchGithubUserFailure,
           args: [action.username],

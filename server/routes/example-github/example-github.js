@@ -18,17 +18,14 @@ const rpOptions = user => {
   };
 };
 
-const fetchUserProfile = username => {
-  rp(rpOptions(username));
-};
+function fetchUserProfile(username) {
+  return rp(rpOptions(username));
+}
 
 const getGithubUser = (req, res, next) => {
   fetchUserProfile(req.params.user)
     .then(userProfile => {
-      res.json({
-        ok: true,
-        msg: `User ${userProfile.login} has ${userProfile.public_repos} repos`,
-      });
+      res.status(200).json(userProfile);
       next();
     })
     .catch(err => {

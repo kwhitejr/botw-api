@@ -18,10 +18,10 @@ export class RequestBlock extends Component {
 
   handleChange(event) {
     this.setState({ username: event.target.value });
-    console.log(this.state.username);
   }
 
   handleClick() {
+    console.log("Click event: " + this.state.username);
     this.props.fetchGithubUser(this.state.username);
   }
 
@@ -34,11 +34,11 @@ export class RequestBlock extends Component {
             <Input
               fluid
               className="example-input"
-              label="http://localhost:3000/"
-              placeholder="github/username"
+              label="http://localhost:3001/github/"
+              placeholder="username"
               action={{
                 color: "teal",
-                content: "Submit",
+                content: "GET",
                 onClick: this.handleClick,
               }}
               onChange={this.handleChange}
@@ -50,7 +50,9 @@ export class RequestBlock extends Component {
           <div className="four wide column" />
           <div className="eight wide column">
             <div className="ui segment code-block">
-              <code>{this.props.response}</code>
+              <code>
+                <pre>{JSON.stringify(this.props.response, null, 2)}</pre>
+              </code>
             </div>
           </div>
           <div className="four wide column" />
