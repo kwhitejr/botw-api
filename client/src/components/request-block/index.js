@@ -5,6 +5,8 @@ import { Input } from "semantic-ui-react";
 
 import { fetchGithubUser } from "../../actions/example-github";
 
+import "./request-block.css";
+
 export class RequestBlock extends Component {
   constructor(props) {
     super(props);
