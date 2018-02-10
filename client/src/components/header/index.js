@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import { Input } from "semantic-ui-react";
 
+import "./header.css";
+import logo from "../../logo.svg";
+
 const Header = () => (
-  <div className="ui menu attached">
-    <div className="right menu">
-      <a className="item">Home</a>
-      <a className="item">About</a>
-      <a className="item">Documentation</a>
-    </div>
-  </div>
+  <header className="App-header">
+    <img src={logo} className="App-logo" alt="logo" />
+    <h1 className="App-title">Welcome to Express-React-Blueprint</h1>
+  </header>
 );
 
 export default Header;

@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 
 import configureStore from "./stores";
 
+import Navbar from "./components/navbar";
 import Header from "./components/header";
 import RequestBlock from "./components/request-block";
 import logo from "./logo.svg";
@@ -13,11 +14,8 @@ const store = configureStore();
 const App = () => (
   <Provider store={store}>
     <div className="App">
+      <Navbar />
       <Header />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to Express-React-Blueprint</h1>
-      </header>
       <RequestBlock />
     </div>
   </Provider>
