@@ -1,8 +1,10 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import throttle from "lodash/throttle";
 
 import { configureStore } from "./stores";
+import { saveState } from "./utils/localStorage";
 
 import Navbar from "./components/navbar";
 // import Header from "./components/header";
@@ -13,6 +15,12 @@ import logo from "./logo.svg";
 import "./App.css";
 
 const store = configureStore();
+
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  }, 1000)
+);
 
 const App = () => (
   <Provider store={store}>
