@@ -7,13 +7,13 @@ import { loadState } from "../utils/localStorage";
 import reducers from "../reducers/index";
 
 const persistedState = loadState();
-const history = createHistory();
-const router = routerMiddleware(history);
-const middleware = [router];
+// const history = createHistory();
+// const router = routerMiddleware(history);
+// const middleware = [router];
 
 const enhancers = compose(
   // Apply middleware
-  applyMiddleware(...middleware),
+  // applyMiddleware(...middleware),
 
   // Install redux-loop
   installReduxLoop(),
