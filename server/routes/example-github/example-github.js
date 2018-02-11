@@ -29,7 +29,8 @@ const getGithubUser = (req, res, next) => {
       next();
     })
     .catch(err => {
-      throw new Error(err); // API call failed...
+      // throw new Error(err); // API call failed...
+      res.status(404).json(err);
     });
 };
 
