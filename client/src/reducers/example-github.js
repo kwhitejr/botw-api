@@ -50,10 +50,10 @@ export const reducer = (state = INITIAL_STATE, action) => {
       );
 
     case GITHUB_USER_SUCCESS:
-      return { ...state, response: action.userProfile };
+      return { ...state, response: action.userProfile, error: null };
 
     case GITHUB_USER_FAILURE:
-      return { ...state, error: action.error };
+      return { ...state, error: action.error, response: "User not found." };
 
     default:
       return state;

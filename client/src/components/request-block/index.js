@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import PropTypes from "prop-types";
-import { Input } from "semantic-ui-react";
+import { Input, Message } from "semantic-ui-react";
 
 import { fetchGithubUser } from "../../actions/example-github";
 
@@ -47,6 +47,18 @@ export class RequestBlock extends Component {
           </div>
           <div className="four wide column" />
         </div>
+        {this.props.error && (
+          <div className="row">
+            <div className="four wide column" />
+            <div className="eight wide column">
+              <Message negative>
+                <Message.Header>404: User not found</Message.Header>
+                <p>Please try another search</p>
+              </Message>
+            </div>
+            <div className="four wide column" />
+          </div>
+        )}
         <div className="row">
           <div className="four wide column" />
           <div className="eight wide column">
