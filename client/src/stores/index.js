@@ -5,13 +5,14 @@ import createHistory from "history/createBrowserHistory";
 
 import reducers from "../reducers/index";
 
-export const history = createHistory();
+const history = createHistory();
 const router = routerMiddleware(history);
 const middleware = [router];
 
 const enhancers = compose(
   // Apply middleware
-  // applyMiddleware(...middleware),
+  applyMiddleware(...middleware),
+
   // Install redux-loop
   installReduxLoop(),
 

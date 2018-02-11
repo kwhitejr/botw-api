@@ -18,9 +18,9 @@ const rpOptions = user => {
   };
 };
 
-function fetchUserProfile(username) {
+const fetchUserProfile = username => {
   return rp(rpOptions(username));
-}
+};
 
 const getGithubUser = (req, res, next) => {
   fetchUserProfile(req.params.user)

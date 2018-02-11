@@ -39,6 +39,10 @@ const createServer = () => {
   app.use("/example", exampleRoutes());
   app.use("/github", exampleGithubRoutes());
 
+  // app.get("/*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "index.html"));
+  // });
+
   const server = app.listen(PORT, () => {
     const port = server.address().port;
     // console.log(`Example app listening at port ${port}`); // eslint-disable-line
