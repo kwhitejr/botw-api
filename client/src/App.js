@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { configureStore } from "./stores";
 
 import Navbar from "./components/navbar";
-import Header from "./components/header";
+// import Header from "./components/header";
 import Home from "./containers/home";
 import About from "./containers/about";
 import Documentation from "./containers/documentation";
@@ -20,7 +20,6 @@ const App = () => (
       <Router>
         <div>
           <Navbar />
-          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />

@@ -23,7 +23,6 @@ export class RequestBlock extends Component {
   }
 
   handleClick() {
-    console.log("Click event: " + this.state.username);
     this.props.fetchGithubUser(this.state.username);
   }
 
