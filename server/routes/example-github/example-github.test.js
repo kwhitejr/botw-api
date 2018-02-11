@@ -5,11 +5,7 @@ import request from "supertest";
 import sinon from "sinon";
 import uuid from "uuid";
 
-import {
-  rpOptions,
-  fetchUserProfile,
-  getGithubUser,
-} from "./example-github.js";
+import { exampleGithubRouter } from "./example-github.js";
 
 describe("Github Examples Routes", () => {
   let server;
@@ -26,7 +22,7 @@ describe("Github Examples Routes", () => {
       const MOCK_USER = uuid();
       const MOCK_URL_BASE = "https://api.github.com/users/";
 
-      const options = rpOptions(MOCK_USER);
+      const options = exampleGithubRouter.rpOptions(MOCK_USER);
 
       expect(options).to.deep.equal({
         method: "GET",
@@ -46,7 +42,7 @@ describe("Github Examples Routes", () => {
     it("should have a successful response", async () => {
       const MOCK_USER = uuid();
       try {
-        const res = await fetchUserProfile(MOCK_USER);
+        const res = await exampleGithubRouter.fetchUserProfile(MOCK_USER);
         assert.ok(res);
       } catch (err) {
         assert.ok(err);
@@ -97,8 +93,8 @@ describe("Github Examples Routes", () => {
       //     `User ${userProfile.login} has ${userProfile.public_repos} repos`
       //   );
       // });
-      sinon.stub(rpOptions).returns(MOCK_OPTIONS);
-      sinon.stub(fetchUserProfile).resolves(MOCK_PROFILE);
+      sinon.stub(exampleGithubRouter.rpOptions).returns(MOCK_OPTIONS);
+      sinon.stub(exampleGithubRouter.fetchUserProfile).resolves(MOCK_PROFILE);
 
       request(server)
         .get(`/github/${MOCK_USER}`)

@@ -3,7 +3,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 
 import { exampleRoutes } from "./routes/example/example.js";
-import { exampleGithubRoutes } from "./routes/example-github/example-github.js";
+import exampleGithubRouter from "./routes/example-github/example-github.js";
 
 const createServer = () => {
   const app = express();
@@ -37,7 +37,7 @@ const createServer = () => {
   });
 
   app.use("/example", exampleRoutes());
-  app.use("/github", exampleGithubRoutes());
+  app.use("/github", exampleGithubRouter.exampleGithubRoutes());
 
   // app.get("/*", (req, res) => {
   //   res.sendFile(path.join(__dirname, "index.html"));
