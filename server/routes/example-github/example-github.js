@@ -23,12 +23,11 @@ const exampleGithubRouter = {
     return rp(exampleGithubRouter.rpOptions(username));
   },
 
-  getGithubUser: (req, res, next) => {
+  getGithubUser: (req, res) => {
     exampleGithubRouter
       .fetchUserProfile(req.params.user)
       .then(userProfile => {
         res.status(200).json(userProfile);
-        next();
       })
       .catch(err => {
         // throw new Error(err); // API call failed...

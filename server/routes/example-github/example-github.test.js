@@ -5,7 +5,7 @@ import request from "supertest";
 import sinon from "sinon";
 import uuid from "uuid";
 
-import { exampleGithubRouter } from "./example-github.js";
+import exampleGithubRouter from "./example-github.js";
 
 describe("Github Examples Routes", () => {
   let server;
@@ -51,58 +51,41 @@ describe("Github Examples Routes", () => {
   });
 
   describe("getGithubUser", () => {
+    const MOCK_USER = uuid();
+
+    const MOCK_PROFILE = {
+      login: MOCK_USER,
+      public_repos: 151,
+    };
+
+    const MOCK_ERROR = Symbol();
+
+    afterEach(() => {
+      exampleGithubRouter.fetchUserProfile.restore();
+    });
+
     it("should return a valid user profile object", done => {
-      const MOCK_USER = uuid();
-
-      // const MOCK_REQUEST = {
-      //   params: {
-      //     user: MOCK_USER,
-      //   },
-      // };
-
-      const MOCK_PROFILE = {
-        login: MOCK_USER,
-        public_repos: 151,
-      };
-
-      const MOCK_RESPONSE = {
-        ok: true,
-        msg: `User ${MOCK_PROFILE.login} has ${
-          MOCK_PROFILE.public_repos
-        } repos`,
-      };
-
-      const MOCK_OPTIONS = {
-        method: "GET",
-        uri: "https://api.github.com/users/" + MOCK_USER,
-        // qs: {
-        //   access_token: "xxxxx xxxxx", // -> uri + '?access_token=xxxxx%20xxxxx'
-        // },
-        headers: {
-          "User-Agent": "Request-Promise",
-        },
-        json: true,
-      };
-
-      // const userProfile = new Promise((resolve, reject) => {
-      //   resolve(MOCK_PROFILE);
-      // });
-
-      // userProfile.then(() => {
-      //   expect(MOCK_RESPONSE.msg).to.equal(
-      //     `User ${userProfile.login} has ${userProfile.public_repos} repos`
-      //   );
-      // });
-      sinon.stub(exampleGithubRouter.rpOptions).returns(MOCK_OPTIONS);
-      sinon.stub(exampleGithubRouter.fetchUserProfile).resolves(MOCK_PROFILE);
+      sinon
+        .stub(exampleGithubRouter, "fetchUserProfile")
+        .resolves(MOCK_PROFILE);
 
       request(server)
         .get(`/github/${MOCK_USER}`)
-        .end(res => {
-          console.log("res: ", res);
-          expect(res.status).to.equal(200);
-          // expect(res.body.msg).to.equal('... something about MOCK_USER?...');
-        });
+        .expect(res => {
+          res.body = MOCK_PROFILE;
+        })
+        .expect(200, done);
+    });
+
+    it("should return an error if rejected", done => {
+      sinon.stub(exampleGithubRouter, "fetchUserProfile").rejects(MOCK_ERROR);
+
+      request(server)
+        .get(`/github/${MOCK_USER}`)
+        .expect(res => {
+          res.body = MOCK_ERROR;
+        })
+        .expect(404, done);
     });
   });
 });
