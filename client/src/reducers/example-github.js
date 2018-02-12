@@ -6,30 +6,15 @@ import {
   GITHUB_USER_FETCH,
   GITHUB_USER_SUCCESS,
   GITHUB_USER_FAILURE,
-  // fetchGithubUser,
   fetchGithubUserSuccess,
   fetchGithubUserFailure,
 } from "../actions/example-github.js";
 
-const API_URL = `http://localhost:3001`;
+import { apiGet } from "../utils/api";
 
-const rpOptions = user => {
-  return {
-    method: "GET",
-    uri: `${API_URL}/github/${user}`,
-    // qs: {
-    //   access_token: "xxxxx xxxxx", // -> uri + '?access_token=xxxxx%20xxxxx'
-    // },
-    headers: {
-      "User-Agent": "Request-Promise",
-    },
-    json: true, // Automatically parses the JSON string in the response
-  };
+const _fetchGithubUser = username => {
+  return apiGet(`github/${username}`);
 };
-
-function _fetchGithubUser(username) {
-  return rp(rpOptions(username));
-}
 
 export const INITIAL_STATE = {
   error: null,
