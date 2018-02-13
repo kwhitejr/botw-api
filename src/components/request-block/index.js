@@ -30,8 +30,8 @@ export class RequestBlock extends Component {
     return (
       <div className="ui grid">
         <div className="row">
-          <div className="four wide column" />
-          <div className="eight wide column">
+          <div className="three wide column" />
+          <div className="ten wide column">
             <Input
               fluid
               className="example-input"
@@ -45,30 +45,30 @@ export class RequestBlock extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="four wide column" />
+          <div className="three wide column" />
         </div>
         {this.props.error && (
           <div className="row">
-            <div className="four wide column" />
-            <div className="eight wide column">
+            <div className="three wide column" />
+            <div className="ten wide column">
               <Message negative>
                 <Message.Header>404: User not found</Message.Header>
                 <p>Please try another search</p>
               </Message>
             </div>
-            <div className="four wide column" />
+            <div className="three wide column" />
           </div>
         )}
         <div className="row">
-          <div className="four wide column" />
-          <div className="eight wide column">
+          <div className="three wide column" />
+          <div className="ten wide column">
             <div className="ui segment code-block">
               <code>
                 <pre>{JSON.stringify(this.props.response, null, 2)}</pre>
               </code>
             </div>
           </div>
-          <div className="four wide column" />
+          <div className="three wide column" />
         </div>
       </div>
     );

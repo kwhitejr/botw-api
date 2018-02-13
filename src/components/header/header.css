@@ -1,17 +1,22 @@
-.App-logo {
+.logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.App-header {
-  background-color: rgb(80, 78, 78);
+.header {
+  background-color: #92c582;
   /* height: 150px; */
   padding: 20px;
   color: white;
 }
 
-.App-title {
+.title {
+  font-size: 2.5em;
+}
+
+.subtitle {
   font-size: 1.5em;
+  margin: 0px;
 }
 
 @keyframes App-logo-spin {
