@@ -38,16 +38,31 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "request-promise-native": "^1.0.5"
+    "lodash": "^4.17.5",
+    "query-string": "^5.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2",
+    "redux-loop": "^4.2.4",
+    "request-promise-native": "^1.0.5",
+    "semantic-ui-react": "^0.77.2"
   },
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "client": "cd client && yarn start",
+    "client": "yarn start",
     "server": "nodemon index.js --exec babel-node --presets es2015,stage-3",
     "test:lint": "eslint **/*.js --ignore-pattern node_modules/",
-    "test:unit": "mocha --compilers js:babel-core/register ./server/**/*.test.js",
+    "test:server:unit": "mocha --compilers js:babel-core/register ./server/**/*.test.js",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha ./server/**/*.test.js",
-    "viewcoverage": "open coverage/lcov-report/index.html"
+    "viewcoverage": "open coverage/lcov-report/index.html",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001/",
   "nyc": {
