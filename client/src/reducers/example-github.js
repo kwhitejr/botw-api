@@ -1,6 +1,4 @@
 import { loop, Cmd } from "redux-loop";
-// create top level utils for `rp`
-import rp from "request-promise-native";
 
 import {
   GITHUB_USER_FETCH,
