@@ -29,12 +29,20 @@ export class RequestBlock extends Component {
   render() {
     return (
       <div className="ui grid">
+        {/* <div className="row">
+          <div className="three wide column" />
+          <div className="ten wide column">
+          </div>
+          <div className="three wide column" />
+        </div> */}
+
         <div className="row">
           <div className="three wide column" />
           <div className="ten wide column">
+            <h1 className="input-request-caption">Try it now!</h1>
             <Input
               fluid
-              className="example-input"
+              className="input-request"
               label="http://localhost:3001/github/"
               placeholder="username"
               action={{
@@ -62,10 +70,11 @@ export class RequestBlock extends Component {
         <div className="row">
           <div className="three wide column" />
           <div className="ten wide column">
-            <div className="ui segment code-block">
-              <code>
-                <pre>{JSON.stringify(this.props.response, null, 2)}</pre>
-              </code>
+            <h3 className="code-block-title">Resource for a Thing</h3>
+            <div className="ui segment">
+              <pre className="code-block">
+                <samp>{JSON.stringify(this.props.response, null, 2)}</samp>
+              </pre>
             </div>
           </div>
           <div className="three wide column" />

@@ -1,5 +1,18 @@
 .code-block {
-  padding: 20px;
   text-align: left;
   overflow: auto;
+  padding: 0px;
+  margin: 0px;
+}
+
+.code-block-title {
+  text-align: left;
+}
+
+.input-request {
+  margin: 0px;
+}
+
+.input-request-caption {
+  margin: 10px 0px 0px 0px !important;
 }
