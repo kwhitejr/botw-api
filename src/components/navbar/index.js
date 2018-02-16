@@ -7,10 +7,7 @@ import { Input } from "semantic-ui-react";
 import "./navbar.css";
 
 const Navbar = () => (
-  <div
-    className="ui menu attached inverted navbar"
-    style={{ background: "#536f50" }}
-  >
+  <div className="ui menu attached inverted navbar">
     <div className="right menu">
       <Link className="item" to="/">
         Home

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Input } from "semantic-ui-react";
 
 import "./header.css";
-import logo from "../../logo.svg";
+import logo from "../../hyrule.jpg";
 
 const Header = ({ title, subtitle }) => (
   <header className="header">
