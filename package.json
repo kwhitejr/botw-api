@@ -49,6 +49,7 @@
     "redux": "^3.7.2",
     "redux-loop": "^4.2.4",
     "request-promise-native": "^1.0.5",
+    "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.77.2"
   },
   "scripts": {

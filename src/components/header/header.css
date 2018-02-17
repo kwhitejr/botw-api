@@ -7,11 +7,12 @@
 .header {
   background: #bbb;
   padding: 20px;
+  height: 200px;
 }
 
 .title {
   font-size: 2.5em;
-  margin-top: 10px
+  margin: 10px 0px 0px 0px !important;
 }
 
 .subtitle {
