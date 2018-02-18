@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import { exampleRoutes } from "./routes/example/example.js";
 import exampleGithubRouter from "./routes/example-github/example-github.js";
 
+const db = require("../models");
+
 const createServer = () => {
   const app = express();
   const PORT = process.env.PORT || 3001;
@@ -43,9 +45,11 @@ const createServer = () => {
   //   res.sendFile(path.join(__dirname, "index.html"));
   // });
 
-  const server = app.listen(PORT, () => {
-    const port = server.address().port;
-    // console.log(`Example app listening at port ${port}`); // eslint-disable-line
+  const server = db.sequelize.sync().then(function() {
+    app.listen(PORT, () => {
+      const port = server.address().port;
+      // console.log(`Example app listening at port ${port}`); // eslint-disable-line
+    });
   });
 
   return server;

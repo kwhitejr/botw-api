@@ -1,8 +1,11 @@
 "use strict";
 
+var Subregion = require("./subregion");
+var Locale = require("./location");
+
 module.exports = function(sequelize, DataTypes) {
   var Region = sequelize.define(
-    "Region",
+    "region",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -13,16 +16,19 @@ module.exports = function(sequelize, DataTypes) {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "regions",
+      tableName: "region",
     }
   );
 
   Region.hasMany(Subregion, {
     as: "subregions",
-    foreignKey: "id",
+    foreignKey: "region_fk",
   });
 
-  // Region.hasMany(Location, {as: "locations"});
+  Region.hasMany(Locale, {
+    as: "locations",
+    foreignKey: "region_fk",
+  });
 
   return Region;
 };
