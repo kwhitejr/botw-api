@@ -39,6 +39,8 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "lodash": "^4.17.5",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
     "query-string": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -50,7 +52,8 @@
     "redux-loop": "^4.2.4",
     "request-promise-native": "^1.0.5",
     "semantic-ui-css": "^2.2.14",
-    "semantic-ui-react": "^0.77.2"
+    "semantic-ui-react": "^0.77.2",
+    "sequelize": "^4.33.4"
   },
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",

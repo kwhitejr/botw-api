@@ -1,0 +1,62 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: API of the Wild
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:3001
+paths:
+  /areas/regions/{id}:
+    summary: Region information
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                    description: The id for the region.
+                  name:
+                    type: string
+                    description: The name of the region.
+                  subregions:
+                    type: array
+                    description: Subregions within the region.
+                    items:
+                      type: object
+                      properties:
+                        id: 
+                          type: integer
+                          description: The id of the subregion.
+                        name:
+                          type: string
+                          description: The name of the subregion.
+                        link:
+                          type: string
+                          dscription: API reference for the subregion.
+                  locations:
+                    type: array
+                    description: Locations within the region.
+                    items:
+                      type: object
+                      properties:
+                        id: 
+                          type: integer
+                          description: The id of the location.
+                        name:
+                          type: string
+                          description: The name of the location.
+                        location-type:
+                          type: string
+                          description: The location type, if applicable.
+                        link:
+                          type: string
+                          dscription: API reference for the location.
+
+  /areas/subregions:
+  /areas/locations:
