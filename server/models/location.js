@@ -18,20 +18,26 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false,
       freezeTableName: true,
       tableName: "locale",
+    },
+    {
+      classMethods: {
+        associate: function(models) {
+          Locale.belongsTo(Region, {
+            as: "location",
+          });
+
+          Locale.belongsTo(Subregion, {
+            as: "location",
+          });
+
+          Locale.hasOne(LocationType, {
+            as: "location_type",
+            foreignKey: "location_type_fk",
+          });
+        },
+      },
     }
   );
-
-  // Locale.belongsTo(Region, {
-  //   foreignKey: "region_fk",
-  // });
-
-  // Locale.belongsTo(Subregion, {
-  //   foreignKey: "subregion_fk",
-  // });
-
-  // Locale.belongsTo(LocationType, {
-  //   foreignKey: "location_type_fk",
-  // });
 
   return Locale;
 };

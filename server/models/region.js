@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false,
       freezeTableName: true,
       tableName: "region",
-    }, 
+    },
     {
       classMethods: {
         associate: function(models) {
@@ -25,22 +25,15 @@ module.exports = function(sequelize, DataTypes) {
             as: "subregions",
             foreignKey: "region_fk",
           });
-          
-          Region.hasMany(Subregion, {
-            as: "subregions",
-            foreignKey: "region_fk",
-          });
-        
+
           Region.hasMany(Locale, {
             as: "locations",
             foreignKey: "region_fk",
           });
-        }
-      }
+        },
+      },
     }
   );
-
- 
 
   return Region;
 };

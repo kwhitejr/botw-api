@@ -22,19 +22,17 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
         associate: function(models) {
           Subregion.belongsTo(Region, {
-            foreignKey: "region_fk",
+            as: "subregion",
           });
-        
+
           Subregion.hasMany(Locale, {
             as: "locations",
             foreignKey: "subregion_fk",
           });
-        }
-      }
+        },
+      },
     }
   );
-
-  
 
   return Region;
 };
