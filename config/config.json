@@ -2,7 +2,7 @@
   "development": {
     "username": "admin",
     "password": null,
-    "database": "botw-api",
+    "database": "botw_api",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

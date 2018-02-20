@@ -17,17 +17,24 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false,
       freezeTableName: true,
       tableName: "subregion",
+    },
+    {
+      classMethods: {
+        associate: function(models) {
+          Subregion.belongsTo(Region, {
+            foreignKey: "region_fk",
+          });
+        
+          Subregion.hasMany(Locale, {
+            as: "locations",
+            foreignKey: "subregion_fk",
+          });
+        }
+      }
     }
   );
 
-  Subregion.belongsTo(Region, {
-    foreignKey: "region_fk",
-  });
-
-  Subregion.hasMany(Locale, {
-    as: "locations",
-    foreignKey: "subregion_fk",
-  });
+  
 
   return Region;
 };

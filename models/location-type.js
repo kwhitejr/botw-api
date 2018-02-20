@@ -1,5 +1,7 @@
 "use strict";
 
+var Locale = require("./location");
+
 module.exports = function(sequelize, DataTypes) {
   var LocationType = sequelize.define(
     "location_type",
@@ -14,6 +16,15 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false,
       freezeTableName: true,
       tableName: "location_type",
+    },
+    {
+      classMethods: {
+        associate: function(models) {
+          LocationType.hasMany(Locale, {
+            foreignKey: "location_type_fk",
+          });
+        },
+      },
     }
   );
 

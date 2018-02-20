@@ -47,7 +47,7 @@ const createServer = () => {
 
   const server = db.sequelize.sync().then(function() {
     app.listen(PORT, () => {
-      const port = server.address().port;
+      // const port = server.address().port;
       // console.log(`Example app listening at port ${port}`); // eslint-disable-line
     });
   });
