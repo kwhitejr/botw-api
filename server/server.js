@@ -2,8 +2,10 @@ import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 
-import { exampleRoutes } from "./routes/example/example.js";
-import exampleGithubRouter from "./routes/example-github/example-github.js";
+// import { exampleRoutes } from "./routes/example/example.js";
+// import exampleGithubRouter from "./routes/example-github/example-github.js";
+// import routes from "./routes";
+import locationRoutes from "./routes/locations";
 
 const db = require("./models");
 
@@ -34,12 +36,14 @@ const createServer = () => {
     next();
   });
 
-  app.get("/", (req, res) => {
-    res.status(200).send("ok");
-  });
+  // app.get("/", (req, res) => {
+  //   res.status(200).send("ok");
+  // });
 
-  app.use("/example", exampleRoutes());
-  app.use("/github", exampleGithubRouter.exampleGithubRoutes());
+  // routes.init(app);
+  // app.use("/example", exampleRoutes());
+  // app.use("/github", exampleGithubRouter.exampleGithubRoutes());
+  app.use("/location", locationRoutes);
 
   // app.get("/*", (req, res) => {
   //   res.sendFile(path.join(__dirname, "index.html"));
