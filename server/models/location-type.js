@@ -4,7 +4,7 @@ var Locale = require("./location");
 
 module.exports = function(sequelize, DataTypes) {
   var LocationType = sequelize.define(
-    "location_type",
+    "Location_type",
     {
       id: {
         type: DataTypes.INTEGER,

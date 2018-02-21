@@ -1,9 +1,14 @@
+const db = require("../../models");
+const Region = db.Region;
+
 export const getRegions = (req, res) => {
-  console.log("inside `getRegions`");
-  res.json({
-    ok: true,
-    msg: "GET:/location/regions successful",
-  });
+  Region.findAll()
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
 };
 
 export const getRegionWithId = (req, res) => {

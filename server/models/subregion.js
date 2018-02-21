@@ -5,7 +5,7 @@ var Locale = require("./location");
 
 module.exports = function(sequelize, DataTypes) {
   var Subregion = sequelize.define(
-    "subregion",
+    "Subregion",
     {
       id: {
         type: DataTypes.INTEGER,
